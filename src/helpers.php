@@ -1,5 +1,7 @@
 <?php
 
+//use LaravelFormHelpers\FormHelpers;
+
 ### olden
 
 ### fill_post
@@ -13,7 +15,7 @@ if (!function_exists('olden')) {
 
     function olden()
     {
-        return \FormHelpers::olden();
+        return FormHelper::olden();
     }
 }
 
@@ -21,7 +23,7 @@ if (!function_exists('olden_check')) {
 
     function olden_check()
     {
-        return \FormHelpers::oldenCheck();
+        return FormHelper::oldenCheck();
     }
 }
 
@@ -29,7 +31,7 @@ if (!function_exists('olden_radio')) {
 
     function olden_radio()
     {
-        return \FormHelpers::oldenRadio();
+        return FormHelper::oldenRadio();
     }
 }
 
@@ -37,7 +39,7 @@ if (!function_exists('fill_post')) {
 
     function fill_post()
     {
-        return \FormHelpers::fillPost();
+        return FormHelper::fillPost();
     }
 }
 
@@ -45,7 +47,7 @@ if (!function_exists('fill_get')) {
 
     function fill_get()
     {
-        return \FormHelpers::fillGet();
+        return FormHelper::fillGet();
     }
 }
 
@@ -53,6 +55,6 @@ if (!function_exists('fill_password')) {
 
     function fill_password()
     {
-        return \FormHelpers::fillPassword();
+        return FormHelper::fillPassword();
     }
 }

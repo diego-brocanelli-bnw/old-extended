@@ -7,42 +7,34 @@ use Illuminate\Contracts\Foundation\Application;
 /**
  * ...
  */
-class FormHelpers
+class Accessor
 {
-    /**
-     * Apenas chamadas estáticas são permitidas
-     */
-    private function __construct()
-    {
-        // ...
-    }
-
-    public static function olden()
+    public function olden()
     {
         return 'não implementado';
     }
 
-    public static oldenCheck()
+    public function oldenCheck()
     {
         return 'não implementado';
     }
 
-    public static oldenRadio()
+    public function oldenRadio()
     {
         return 'não implementado';
     }
 
-    public static function fillPost()
+    public function fillPost()
     {
         return 'não implementado';
     }
 
-    public static function fillGet()
+    public function fillGet()
     {
         return 'não implementado';
     }
 
-    public static function fillPassword()
+    public function fillPassword()
     {
         return 'não implementado';
     }
