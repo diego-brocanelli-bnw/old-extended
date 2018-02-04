@@ -1,6 +1,8 @@
-# Laravel Form Helpers [![Packagist License][badge_license]](LICENSE.md) [![For Laravel 5.5][badge_laravel]][link-github-repo] [![For PHP][badge_laravel]][link-github-repo]
+# Laravel Form Helpers 
 
-[![Travis Status][badge_build]][link-travis]
+<!-- [![Packagist License][badge_license]](LICENSE.md) [![For Laravel 5.5][badge_laravel]][link-github-repo] [![For PHP][badge_laravel]][link-github-repo] -->
+
+<!-- [![Travis Status][badge_build]][link-travis]
 [![Coverage Status][badge_coverage]][link-scrutinizer]
 [![Scrutinizer Code Quality][badge_quality]][link-scrutinizer]
 [![SensioLabs Insight][badge_insight]][link-insight]
@@ -8,7 +10,7 @@
 
 [![Packagist][badge_package]][link-packagist]
 [![Packagist Release][badge_release]][link-packagist]
-[![Packagist Downloads][badge_downloads]][link-packagist]
+[![Packagist Downloads][badge_downloads]][link-packagist] -->
 
 *By [Ricardo Pereira Dias&copy;](http://www.cgnow.com.br/)*
 
@@ -18,7 +20,7 @@ Sinta-se à vontade para conferir [releases](https://github.com/rpdesignerfly/la
 
 ### Características
 
-  * Feito para o [Laravel]:  https://img.shields.io/badge/Laravel->=5.5-green.svg "Laravel v5.5 ou superior".
+  * Feito para o Laravel 5.5 ou superior.
   * Configuração automática.
   * Bem documentado &amp; e amigável para IDEs.
   * Bem testado e com máxima qualidade de código.
