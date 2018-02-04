@@ -12,17 +12,17 @@
 [![Packagist Release][badge_release]][link-packagist]
 [![Packagist Downloads][badge_downloads]][link-packagist] -->
 
-*By [Ricardo Pereira Dias&copy;](http://www.cgnow.com.br/)*
+*By [Ricardo Pereira Dias &copy;](https://github.com/rpdesignerfly)*
 
 Laravel Form Helpers é um pacote que provê helpers adicionais para o desenvolvimento de formulários com Laravel e Blade templates. 
 
-Sinta-se à vontade para conferir [releases](https://github.com/rpdesignerfly/laravel-form-helpers/releases), [licença](license.md) e a [documentação](docs/00-Home.md).
+Sinta-se à vontade para conferir os [releases](https://github.com/rpdesignerfly/laravel-form-helpers/releases), a [licença](license.md) e a [documentação](docs/00-Home.md).
 
 ### Características
 
   * Feito para o Laravel 5.5 ou superior.
   * Configuração automática.
-  * Bem documentado &amp; e amigável para IDEs.
+  * Bem documentado &amp; amigável para IDEs.
   * Bem testado e com máxima qualidade de código.
   * Feito com :heart: &amp; :coffee:.
 
@@ -36,5 +36,4 @@ Sinta-se à vontade para conferir [releases](https://github.com/rpdesignerfly/la
 
 ## Creditos
 
-- [Ricardo Pereira Dias][link-author]
-<!-- - [Contribuições][link-contributors] -->
+- [Ricardo Pereira Dias](https://github.com/rpdesignerfly)
