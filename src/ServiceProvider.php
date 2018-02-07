@@ -1,6 +1,6 @@
 <?php
 
-namespace LaravelFormHelpers;
+namespace OldExtended;
 
 class ServiceProvider extends \Illuminate\Support\ServiceProvider
 {

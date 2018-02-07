@@ -1,60 +1,20 @@
 <?php
 
-//use LaravelFormHelpers\FormHelpers;
+if (!function_exists('old_check')) {
 
-### olden
-
-### fill_post
-
-### fill_get
-
-### fill_password
-
-
-if (!function_exists('olden')) {
-
-    function olden()
+    /**
+     * Helper semelhante ao old() original do Laravel,
+     * porém, para ser usado em inputs do tipo checkbox
+     *
+     * @see https://github.com/rpdesignerfly/laravel-old-extended/blob/master/docs/02-Usage.md
+     * 
+     * @param string $key          A chave do parâmetro enviado pela requisição
+     * @param mixed  $default      O parâmetro padrão, caso não exista um valor 'old'
+     * @param mixed  $active_value A propriedade checked é devolvida se $active_value == $default
+     */
+    function old_check($key = null, $default = null, $active_value = 'on')
     {
-        return FormHelper::olden();
+        return OldExtended::oldCheck($key, $default, $active_value);
     }
-}
 
-if (!function_exists('olden_check')) {
-
-    function olden_check()
-    {
-        return FormHelper::oldenCheck();
-    }
-}
-
-if (!function_exists('olden_radio')) {
-
-    function olden_radio()
-    {
-        return FormHelper::oldenRadio();
-    }
-}
-
-if (!function_exists('fill_post')) {
-
-    function fill_post()
-    {
-        return FormHelper::fillPost();
-    }
-}
-
-if (!function_exists('fill_get')) {
-
-    function fill_get()
-    {
-        return FormHelper::fillGet();
-    }
-}
-
-if (!function_exists('fill_password')) {
-
-    function fill_password()
-    {
-        return FormHelper::fillPassword();
-    }
 }

@@ -9,7 +9,7 @@
 
 ## Requisitos do servidor
 
-O pacote Laravel Form Helpers possui os seguintes requisitos:
+O pacote Laravel Old Extended possui os seguintes requisitos:
 
 ```
 - PHP >= 7.0.0
@@ -18,5 +18,5 @@ O pacote Laravel Form Helpers possui os seguintes requisitos:
 
 ## Composer
 
-Para instalar o pacote, use o [Composer](http://getcomposer.org/) executando o seguinte comando: `composer require rpdesignerfly/laravel-form-helpers`.
+Para instalar o pacote, use o [Composer](http://getcomposer.org/) executando o seguinte comando: `composer require plexi/laravel-old-extended`.
 

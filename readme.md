@@ -1,20 +1,8 @@
-# Laravel Form Helpers 
-
-<!-- [![Packagist License][badge_license]](LICENSE.md) [![For Laravel 5.5][badge_laravel]][link-github-repo] [![For PHP][badge_laravel]][link-github-repo] -->
-
-<!-- [![Travis Status][badge_build]][link-travis]
-[![Coverage Status][badge_coverage]][link-scrutinizer]
-[![Scrutinizer Code Quality][badge_quality]][link-scrutinizer]
-[![SensioLabs Insight][badge_insight]][link-insight]
-[![Github Issues][badge_issues]][link-github-issues]
-
-[![Packagist][badge_package]][link-packagist]
-[![Packagist Release][badge_release]][link-packagist]
-[![Packagist Downloads][badge_downloads]][link-packagist] -->
+# Laravel Old Extended
 
 *By [Ricardo Pereira Dias &copy;](https://github.com/rpdesignerfly)*
 
-Laravel Form Helpers é um pacote que provê helpers adicionais para o desenvolvimento de formulários com Laravel e Blade templates. 
+Laravel Old Extended é um pacote que provê helpers adicionais para o desenvolvimento de formulários com Laravel e Blade templates.
 
 Sinta-se à vontade para conferir os [releases](https://github.com/rpdesignerfly/laravel-form-helpers/releases), a [licença](license.md) e a [documentação](docs/00-Home.md).
 

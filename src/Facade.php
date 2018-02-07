@@ -1,6 +1,6 @@
 <?php 
 
-namespace LaravelFormHelpers;
+namespace OldExtended;
 
 class Facade extends \Illuminate\Support\Facades\Facade
 {

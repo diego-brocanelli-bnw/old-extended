@@ -1,42 +1,15 @@
 <?php 
 
-namespace LaravelFormHelpers;
-
-use Illuminate\Contracts\Foundation\Application;
+namespace OldExtended;
 
 /**
  * ...
  */
 class Accessor
 {
-    public function olden()
+    public function oldCheck($key = null, $default = null, $active_value = 'on')
     {
-        return 'não implementado';
+        return (old($key, null) == $active_value || $default == $active_value)
+            ? 'checked' : '';
     }
-
-    public function oldenCheck()
-    {
-        return 'não implementado';
-    }
-
-    public function oldenRadio()
-    {
-        return 'não implementado';
-    }
-
-    public function fillPost()
-    {
-        return 'não implementado';
-    }
-
-    public function fillGet()
-    {
-        return 'não implementado';
-    }
-
-    public function fillPassword()
-    {
-        return 'não implementado';
-    }
-
 }

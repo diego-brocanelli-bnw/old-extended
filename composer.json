@@ -1,5 +1,5 @@
 {
-    "name": "rpdesignerfly/laravel-form-helpers",
+    "name": "plexi/laravel-old-extended",
     "description": "Helpers adicionais para o desenvolvimento de formulários com Laravel e Blade templates",
     "keywords": ["laravel"],
     "license": "MIT",
@@ -14,12 +14,12 @@
     },
     "autoload": {
         "psr-4": {
-            "LaravelFormHelpers\\": "src/"
+            "OldExtended\\": "src/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "LaravelFormHelpers\\Tests\\": "tests/"
+            "OldExtended\\Tests\\": "tests/"
         }
     },
     "minimum-stability": "dev",
@@ -30,10 +30,10 @@
         },
         "laravel": {
             "providers": [
-                "LaravelFormHelpers\\ServiceProvider"
+                "OldExtended\\ServiceProvider"
             ],
             "aliases": {
-                "FormHelper": "LaravelFormHelpers\\Facade"
+                "OldExtended": "OldExtended\\Facade"
             }
         }
     },
