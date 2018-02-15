@@ -49,7 +49,10 @@ $ git clone https://github.com/rpdesignerfly/laravel-old-extended.git .
 
 ### 4. Configurando o Laravel para usar o pacote
 
-No arquivo "composer.json", abaixo da seção 'config', adicione 'minimum-stability' como 'dev' e o repositório apontando para o diretório './packages/plexi/laravel-old-extended/'. Atenção: Não esqueça da barra (/) no final:
+No arquivo "composer.json", abaixo da seção 'config', adicione 'minimum-stability' como 'dev' e o repositório apontando para o diretório './packages/plexi/laravel-old-extended/'. 
+
+> **Atenção:** 
+> Não esqueça da barra (/) no final:
 
 ```
 {
