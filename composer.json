@@ -1,5 +1,5 @@
 {
-    "name": "plexi/laravel-old-extended",
+    "name": "plexi/old-extended",
     "description": "Helpers adicionais para o desenvolvimento de formulários com Laravel e Blade templates",
     "keywords": ["laravel","forms","blade","helpers"],
     "license": "MIT",
@@ -26,7 +26,7 @@
     "prefer-stable": true,
     "extra": {
         "branch-alias": {
-            "dev-master": "1.0-dev"
+            "dev-master": "1.0.x-dev"
         },
         "laravel": {
             "providers": [
