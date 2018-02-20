@@ -19,6 +19,25 @@ if (!function_exists('old_check')) {
 
 }
 
+if (!function_exists('old_radio')) {
+
+    /**
+     * Helper semelhante ao old() original do Laravel,
+     * porém, para ser usado em inputs do tipo checkbox
+     *
+     * @see https://github.com/rpdesignerfly/laravel-old-extended/blob/master/docs/02-Usage.md
+     * 
+     * @param string $key             A chave do parâmetro enviado pela requisição
+     * @param mixed  $value           O valor deste radiobox
+     * @param mixed  $default_checked Será checado por padrão se não existir um radio setado
+     */
+    function old_radio($key = null, $value = null, $default_checked = false)
+    {
+        return OldExtended::oldRadio($key, $value, $default_checked);
+    }
+
+}
+
 if (!function_exists('old_option')) {
 
     /**
