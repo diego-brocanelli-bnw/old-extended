@@ -33,23 +33,23 @@ $ mkdir /caminho/do/projeto/packages
 
 ### 3. Obtendo o pacote para desenvolvimento
 
-No novo diretório de pacotes, é preciso criar a estrutura do pacote 'laravel-old-extened'. O formato deve ser '[vendor]/[pacote]', ou seja, a estrutura do pacote ficará assim '/plexi/laravel-old-extended':
+No novo diretório de pacotes, é preciso criar a estrutura do pacote 'old-extended'. O formato deve ser '[vendor]/[pacote]', ou seja, a estrutura do pacote ficará assim '/plexi/old-extended':
 
 ```
 $ cd /caminho/do/projeto/packages
-$mkdir -p plexi/laravel-old-extended
+$mkdir -p plexi/old-extended
 ```
 
-No diretório 'laravel-old-extended', faça um clone do repositório:
+No diretório 'old-extended', faça um clone do repositório:
 
 ```
-$ cd /caminho/do/projeto/packages/plexi/laravel-old-extended
-$ git clone https://github.com/rpdesignerfly/laravel-old-extended.git .
+$ cd /caminho/do/projeto/packages/plexi/old-extended
+$ git clone https://github.com/rpdesignerfly/old-extended.git .
 ```
 
 ### 4. Configurando o Laravel para usar o pacote
 
-No arquivo "composer.json", abaixo da seção 'config', adicione 'minimum-stability' como 'dev' e o repositório apontando para o diretório './packages/plexi/laravel-old-extended/'. 
+No arquivo "composer.json", abaixo da seção 'config', adicione 'minimum-stability' como 'dev' e o repositório apontando para o diretório './packages/plexi/old-extended/'. 
 
 > **Atenção:** 
 > Não esqueça da barra (/) no final:
@@ -68,7 +68,7 @@ No arquivo "composer.json", abaixo da seção 'config', adicione 'minimum-stabil
 
     "minimum-stability" : "dev",
     "repositories": [
-        {"type": "path", "url": "./packages/plexi/laravel-old-extended/"}
+        {"type": "path", "url": "./packages/plexi/old-extended/"}
     ]
 
 }
@@ -78,7 +78,7 @@ Com o repositório configurado, use normalmente o comando para instalação:
 
 ```
 $ cd /caminho/do/projeto
-$ composer require plexi/laravel-old-extended
+$ composer require plexi/old-extended
 ```
 
 

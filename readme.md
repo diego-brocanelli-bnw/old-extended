@@ -1,9 +1,9 @@
 # Laravel Old Extended
 
-![PHP Version](https://img.shields.io/packagist/php-v/plexi/laravel-old-extended.svg)
-![Laravel](https://img.shields.io/badge/laravel-5.6-red.svg?style=flat)
-![Packagist](https://img.shields.io/packagist/v/plexi/laravel-old-extended.svg)
-![Downloads](https://img.shields.io/packagist/dm/plexi/laravel-old-extended.svg)
+![PHP Version](https://img.shields.io/packagist/php-v/plexi/old-extended.svg)
+![Laravel](https://img.shields.io/badge/laravel->=5.5.0-red.svg?style=flat)
+![Packagist](https://img.shields.io/packagist/v/plexi/old-extended.svg)
+![Downloads](https://img.shields.io/packagist/dm/plexi/old-extended.svg)
 
 *By [Ricardo Pereira Dias &copy;](https://github.com/rpdesignerfly)*
 
@@ -12,11 +12,11 @@ Laravel Old Extended é um pacote que provê helpers adicionais para o desenvolv
 > **Atenção**:
 > Esta biblioteca está em fase de desenvolvimento. Use-a por sua conta e risco!
 
-Sinta-se à vontade para conferir os [releases](https://github.com/rpdesignerfly/laravel-form-helpers/releases), a [licença](license.md) e a [documentação](https://rpdesignerfly.github.io/laravel-old-extended).
+Sinta-se à vontade para conferir os [releases](https://github.com/rpdesignerfly/old-extended/releases), a [licença](license.md) e a [documentação](https://rpdesignerfly.github.io/old-extended).
 
 ### Características
 
-  * Feito para o Laravel 5.6 ou superior.
+  * Feito para o Laravel 5.5 ou superior.
   * Configuração automática.
   * Bem documentado &amp; amigável para IDEs.
   * Bem testado e com máxima qualidade de código.

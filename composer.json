@@ -1,7 +1,7 @@
 {
     "name": "plexi/old-extended",
     "description": "Helpers adicionais para o desenvolvimento de formulários com Laravel e Blade templates",
-    "keywords": ["laravel","forms","blade","helpers"],
+    "keywords": ["laravel","cruds","form","blade","helpers"],
     "license": "MIT",
     "authors": [
         {
@@ -10,7 +10,8 @@
         }
     ],
     "require": {
-        "php": ">=7.0"
+        "php": ">=7.0.0",
+        "laravel/framework": "~5.5",
     },
     "autoload": {
         "psr-4": {

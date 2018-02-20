@@ -19,5 +19,5 @@ O pacote Laravel Old Extended possui os seguintes requisitos:
 
 ## Composer
 
-Para instalar o pacote, use o [Composer](http://getcomposer.org/) executando o seguinte comando: `composer require plexi/laravel-old-extended`.
+Para instalar o pacote, use o [Composer](http://getcomposer.org/) executando o seguinte comando: `composer require plexi/old-extended`.
 
