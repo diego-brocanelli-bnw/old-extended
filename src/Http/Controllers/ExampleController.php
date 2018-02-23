@@ -29,7 +29,7 @@ class ExampleController extends Controller
     {
         // Não faz nada e volta para o formulário.
         // Operação apenas para testar os 'olds'
-        return back();
+        return back()->withInput($form->all());
     }
 
     /**

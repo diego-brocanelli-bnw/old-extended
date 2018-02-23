@@ -13,7 +13,7 @@
     | APP_ENV=local
     */
 
-    Route::namespace('OldExtended\Http\Controllers')->group(function () {
+    Route::namespace('OldExtended\Http\Controllers')->middleware(['web'])->group(function () {
 
         Route::get('/old-extended', 'ExampleController@edit')->name('old-extended.edit');
         Route::put('/old-extended', 'ExampleController@update')->name('old-extended.update');

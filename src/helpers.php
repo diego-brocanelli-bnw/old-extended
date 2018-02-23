@@ -1,5 +1,13 @@
 <?php
 
+if (!function_exists('old_debug_origin')) {
+
+    function old_debug_origin()
+    {
+        return OldExtended::debugOrigin();
+    }
+}
+
 if (!function_exists('old_check')) {
 
     /**
@@ -8,34 +16,32 @@ if (!function_exists('old_check')) {
      *
      * @see https://github.com/rpdesignerfly/laravel-old-extended/blob/master/docs/02-Usage.md
      * 
-     * @param string $key          A chave do parâmetro enviado pela requisição
-     * @param mixed  $default      O parâmetro padrão, caso não exista um valor 'old'
-     * @param mixed  $active_value A propriedade checked é devolvida se $active_value == $default
+     * @param string $key          O nome do campo de formulário
+     * @param mixed  $input_value  O valor do input checkbox
+     * @param mixed  $stored_value O valor armazenado em banco de dados
      */
-    function old_check($key = null, $default = null, $active_value = 'on')
+    function old_check($key = null, $input_value = null, $stored_value = null)
     {
-        return OldExtended::oldCheck($key, $default, $active_value);
+        return OldExtended::oldCheck($key, $input_value, $stored_value);
     }
-
 }
 
 if (!function_exists('old_radio')) {
 
     /**
      * Helper semelhante ao old() original do Laravel,
-     * porém, para ser usado em inputs do tipo checkbox
+     * porém, para ser usado em inputs do tipo radio
      *
      * @see https://github.com/rpdesignerfly/laravel-old-extended/blob/master/docs/02-Usage.md
      * 
-     * @param string $key             A chave do parâmetro enviado pela requisição
-     * @param mixed  $value           O valor deste radiobox
-     * @param mixed  $default_checked Será checado por padrão se não existir um radio setado
+     * @param string $key          O nome do campo de formulário
+     * @param mixed  $input_value  O valor do input radio
+     * @param mixed  $stored_value O valor armazenado em banco de dados
      */
-    function old_radio($key = null, $value = null, $default_checked = false)
+    function old_radio($key = null, $input_value = null, $stored_value = null)
     {
-        return OldExtended::oldRadio($key, $value, $default_checked);
+        return OldExtended::oldRadio($key, $input_value, $stored_value);
     }
-
 }
 
 if (!function_exists('old_option')) {
@@ -44,14 +50,12 @@ if (!function_exists('old_option')) {
      * Helper semelhante ao old() original do Laravel,
      * porém, para ser usado em options de inputs do tipo select
      *
-     * @see https://github.com/rpdesignerfly/laravel-old-extended/blob/master/docs/02-Usage.md
-     * 
-     * @param string $key          A chave do parâmetro enviado pela requisição
-     * @param mixed  $default      O parâmetro padrão, caso não exista um valor 'old'
-     * @param mixed  $active_value A propriedade selected é devolvida se $active_value == $default
+     * @param string $key          O nome do campo de formulário
+     * @param mixed  $option_value O valor da tag option
+     * @param mixed  $stored_value O valor armazenado em banco de dados
      */
-    function old_option($key = null, $default = null, $active_value = null)
+    function old_option($key = null, $option_value = null, $stored_value = null)
     {
-        return OldExtended::oldOption($key, $default, $active_value);
+        return OldExtended::oldOption($key, $option_value, $stored_value);
     }
 }
