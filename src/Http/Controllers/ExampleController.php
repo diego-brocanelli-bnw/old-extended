@@ -14,6 +14,7 @@ class ExampleController extends Controller
      */
     public function edit()
     {
+
         return view('old-extended::edit')
             ->with('model', \App\User::find(1));
     }
@@ -27,6 +28,9 @@ class ExampleController extends Controller
      */
     public function update(Request $form)
     {
+        // Para testar o old_date()
+        //dd($form->all());
+
         // Não faz nada e volta para o formulário.
         // Operação apenas para testar os 'olds'
         return back()->withInput($form->all());

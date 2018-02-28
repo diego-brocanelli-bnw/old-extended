@@ -50,6 +50,9 @@
                 'old_option' => '2',
                 'old_check'  => 'no',
                 'old_radio'  => '2',
+
+                'old_date'   => '1980-01-10',
+                'old_datetime'   => '1980-01-10 10:10:10',
                 ];
 
         @endphp
@@ -75,6 +78,27 @@
                 <small class="form-text text-muted">Helper old_option() para selects</small>
 
             </div>
+
+            <div class="col form-group">
+
+                <label>Old Date</label>
+                <input name="old_date" class="form-control" value="{{ old_date('old_date', $model->old_date) }}">
+                <small class="form-text text-muted">Helper old_date() para datas</small>
+
+            </div>
+
+            <div class="col form-group">
+
+                <label>Old Datetime</label>
+                <input name="old_datetime" class="form-control" 
+                       value="{{ old_datetime('old_datetime', $model->old_datetime) }}">
+                <small class="form-text text-muted">Helper old_datetime() para datas</small>
+
+            </div>
+
+        </div>
+
+        <div class="row">
 
             <div class="col form-group">
 
@@ -112,7 +136,13 @@
                 <small class="form-text text-muted">Helper old_radio() para radioboxes</small>
 
             </div>
-            
+
+            <div class="col form-group">
+            </div>
+
+            <div class="col form-group">
+            </div>
+
         </div>
 
         <div class="row">

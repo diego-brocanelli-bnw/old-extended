@@ -59,3 +59,39 @@ if (!function_exists('old_option')) {
         return OldExtended::oldOption($key, $option_value, $stored_value);
     }
 }
+
+if (!function_exists('old_date')) {
+
+    /**
+     * Helper semelhante ao old() original do Laravel,
+     * porém, para ser usado com datas
+     *
+     * @param string $key           O nome do campo de formulário
+     * @param mixed  $stored_value  O valor armazenado em banco de dados
+     * @param string $stored_format O formato recebida Ex: d/m/Y
+     * @param string $show_format   O formato a ser exibido Ex: Y-m-d
+     */
+    function old_date($key, $stored_value = null, $stored_format = 'Y-m-d', $show_format = 'd/m/Y')
+    {
+        return OldExtended::oldDate($key, $stored_value, $stored_format, $show_format);
+    }
+}
+
+if (!function_exists('old_datetime')) {
+
+    /**
+     * Helper semelhante ao old() original do Laravel,
+     * porém, para ser usado com datas
+     *
+     * @see https://github.com/rpdesignerfly/laravel-old-extended/blob/master/docs/02-Usage.md
+     * 
+     * @param string $key           O nome do campo de formulário
+     * @param mixed  $stored_value  O valor armazenado em banco de dados
+     * @param string $stored_format O formato recebida Ex: d/m/Y H:i:s
+     * @param string $show_format   O formato a ser exibido Ex: Y-m-d H:i:s
+     */
+    function old_datetime($key, $stored_value = null, $stored_format = 'Y-m-d H:i:s', $show_format = 'd/m/Y H:i:s')
+    {
+        return OldExtended::oldDateTime($key, $stored_value, $stored_format, $show_format);
+    }
+}
