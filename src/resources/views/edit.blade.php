@@ -57,6 +57,23 @@
 
         @endphp
 
+        @if (session()->has('_old_input'))
+        
+            <div class="alert alert-info">
+
+                <h4 class="alert-heading">Dados após tratamento pela requisição!</h4>
+
+                <p>
+                    @foreach(session('_old_input') as $key => $value)
+                        @if(!in_array($key, ['_token', '_method']))
+                        - <b>{{ $key }}</b>: {{ $value }} <br>
+                        @endif
+                    @endforeach
+                </p>
+            </div>
+
+        @endif
+
         <div class="row">
 
             <div class="col form-group">

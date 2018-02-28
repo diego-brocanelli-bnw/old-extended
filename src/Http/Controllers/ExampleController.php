@@ -3,6 +3,7 @@
 namespace OldExtended\Http\Controllers;
 
 use Illuminate\Http\Request;
+use OldExtended\Http\Requests\ExtendedRequest;
 
 class ExampleController extends Controller
 {
@@ -14,7 +15,6 @@ class ExampleController extends Controller
      */
     public function edit()
     {
-
         return view('old-extended::edit')
             ->with('model', \App\User::find(1));
     }
@@ -26,10 +26,10 @@ class ExampleController extends Controller
      * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $form)
+    public function update(ExtendedRequest $form)
     {
         // Para testar o old_date()
-        //dd($form->all());
+        // dd($form->all());
 
         // Não faz nada e volta para o formulário.
         // Operação apenas para testar os 'olds'

@@ -7,13 +7,26 @@ namespace OldExtended;
  */
 class Accessor
 {
-    const ORIGIN_FORM    = 'form';
+    const ORIGIN_FORM     = 'form';
     
-    const ORIGIN_STORE   = 'store';
+    const ORIGIN_STORE    = 'store';
     
-    const ORIGIN_DEFAULT = 'default';
-
+    const ORIGIN_DEFAULT  = 'default';
+    
     private $debug_origin = null;
+    
+    private $initialized  = false;
+
+    public function initialize()
+    {
+        if ($this->initialized == false) {
+            header('Cache-Control: max-age=0, no-cache, no-store, must-revalidate');
+            header('Pragma: no-cache');
+            header('Expires: Fri, 20 Mar 2014 00:00:00 GMT');
+        }
+
+        $this->initialized = true;
+    }
 
     /**
      * Carrega e inclui os helpers do pacote
@@ -48,6 +61,8 @@ class Accessor
     //public function oldCheck($key = null, $default = null, $active_value = 'on')
     public function oldCheck($key, $input_value = 'no', $stored_value = null)
     {
+        $this->initialize();
+
         $old = old($key, false);
 
         // Usuário já checou a opção
@@ -80,6 +95,8 @@ class Accessor
      */
     public function oldRadio($key, $input_value = null, $stored_value = null)
     {
+        $this->initialize();
+
         $old = old($key, false);
 
         // Usuário já setou a opção
@@ -112,6 +129,8 @@ class Accessor
      */
     public function oldOption($key, $option_value = null, $stored_value = null)
     {
+        $this->initialize();
+
         $old = old($key, false);
 
         // Usuário já selecionou uma opção
@@ -144,6 +163,8 @@ class Accessor
      */
     public function oldDate($key, $stored_value = null, $stored_format = 'Y-m-d', $show_format = 'd/m/Y')
     {
+        $this->initialize();
+
         $old = old($key, false);
 
         // Usuário já preencheu uma data
@@ -164,17 +185,12 @@ class Accessor
             return '';
         }
 
-        // Guarda as informações para identificar na próxima requisição
-        $old_extended_date = (\Cache::has('old_extended_date'))
-            ? \Cache::get('old_extended_date') : [];
-
+         // Guarda as informações para identificar na próxima requisição
+        $old_extended_token    = 'old_extended_date_' . csrf_token();
+        $old_extended_date = session()->has($old_extended_token)
+            ? session($old_extended_token) : [];
         $old_extended_date[$key] = "{$show_format}:::{$stored_format}";
-        \Cache::put('old_extended_date', $old_extended_date, now()->addMinutes(30));
-
-
-        header('Cache-Control: max-age=0, no-cache, no-store, must-revalidate');
-        header('Pragma: no-cache');
-        header('Expires: Fri, 20 Mar 2014 00:00:00 GMT');
+        session()->put($old_extended_token, $old_extended_date);
 
         return $date->format($show_format);
     }
