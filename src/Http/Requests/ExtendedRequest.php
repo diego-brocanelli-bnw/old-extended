@@ -27,7 +27,7 @@ class ExtendedRequest extends FormRequest
                     $value = $request->offsetGet($key);
                     $mutate = explode(':::', $mutation);
 
-                    $value = old_date($key, $value, $mutate[0], $mutate[1]);
+                    $value = \OldExtended::dateTransform($value, $mutate[0], $mutate[1]);
                     $request->offsetSet($key, $value);
                 }
             }

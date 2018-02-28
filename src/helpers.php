@@ -95,3 +95,18 @@ if (!function_exists('old_datetime')) {
         return OldExtended::oldDateTime($key, $stored_value, $stored_format, $show_format);
     }
 }
+
+if (!function_exists('date_transform')) {
+
+    /**
+     * Transforma uma data de um formato para outro
+     *
+     * @param string $date_value     O valor da data
+     * @param string $format_origin  O formato original do valor Ex: d/m/Y
+     * @param string $format_destiny O formato transformado Ex: Y-m-d
+     */
+    function date_transform($date_value, $format_origin = 'd/m/Y H:i:s', $format_destiny = 'Y-m-d H:i:s')
+    {
+        return OldExtended::dateTransform($date_value, $format_origin, $format_destiny);
+    }
+}

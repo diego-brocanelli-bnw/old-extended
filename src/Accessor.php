@@ -17,17 +17,6 @@ class Accessor
     
     private $initialized  = false;
 
-    public function initialize()
-    {
-        if ($this->initialized == false) {
-            header('Cache-Control: max-age=0, no-cache, no-store, must-revalidate');
-            header('Pragma: no-cache');
-            header('Expires: Fri, 20 Mar 2014 00:00:00 GMT');
-        }
-
-        $this->initialized = true;
-    }
-
     /**
      * Carrega e inclui os helpers do pacote
      * 
@@ -48,6 +37,17 @@ class Accessor
         return $this->debug_origin = "$origin" . (!empty($value) ? '::'.$value : '');
     }
 
+    private function initialize()
+    {
+        if ($this->initialized == false) {
+            header('Cache-Control: max-age=0, no-cache, no-store, must-revalidate');
+            header('Pragma: no-cache');
+            header('Expires: Fri, 20 Mar 2014 00:00:00 GMT');
+        }
+
+        $this->initialized = true;
+    }
+
     /**
      * Helper semelhante ao old() original do Laravel,
      * porém, para ser usado em inputs do tipo checkbox
@@ -58,7 +58,6 @@ class Accessor
      * @param mixed  $input_value  O valor do input checkbox
      * @param mixed  $stored_value O valor armazenado em banco de dados
      */
-    //public function oldCheck($key = null, $default = null, $active_value = 'on')
     public function oldCheck($key, $input_value = 'no', $stored_value = null)
     {
         $this->initialize();
@@ -153,13 +152,26 @@ class Accessor
     }
 
     /**
+     * Transforma uma data de um formato para outro
+     *
+     * @param string $date_value     O valor da data
+     * @param string $format_origin  O formato original do valor Ex: d/m/Y
+     * @param string $format_destiny O formato transformado Ex: Y-m-d
+     */
+    public function dateTransform($date_value, $format_origin = 'd/m/Y H:i:s', $format_destiny = 'Y-m-d H:i:s')
+    {
+        $date = \DateTime::createFromFormat($format_origin, $date_value);
+        return $date !== false ? $date->format($format_destiny) : '';
+    }
+
+    /**
      * Helper semelhante ao old() original do Laravel,
      * porém, para ser usado com datas
      *
      * @param string $key          O nome do campo de formulário
      * @param mixed  $stored_value O valor armazenado em banco de dados
-     * @param string $store_format    O formato recebida Ex: d/m/Y
-     * @param string $show_format   O formato a ser exibido Ex: Y-m-d
+     * @param string $store_format O formato recebida Ex: d/m/Y
+     * @param string $show_format  O formato a ser exibido Ex: Y-m-d
      */
     public function oldDate($key, $stored_value = null, $stored_format = 'Y-m-d', $show_format = 'd/m/Y')
     {
@@ -180,8 +192,8 @@ class Accessor
             $value = $stored_value;
         }
         
-        $date = \DateTime::createFromFormat($stored_format, $value);
-        if ($date === false) {
+        $date = $this->dateTransform($value, $stored_format, $show_format);
+        if (empty($date)) {
             return '';
         }
 
@@ -192,7 +204,7 @@ class Accessor
         $old_extended_date[$key] = "{$show_format}:::{$stored_format}";
         session()->put($old_extended_token, $old_extended_date);
 
-        return $date->format($show_format);
+        return $date;
     }
 
     /**
