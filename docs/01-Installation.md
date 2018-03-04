@@ -12,7 +12,7 @@ O pacote Laracl possui os seguintes requisitos básicos:
 Para baixar o pacote, será necessário usar o [Composer](http://getcomposer.org/).
 Com o composer devidamente instalado no sistema operacional, execute o seguinte comando: 
 
-```
+```bash
 $ cd /diretorio/meu/projeto/laravel/
 $ composer require plexi/old-extended
 ```
@@ -22,7 +22,7 @@ arquivo composer.json do Laravel e em seguida efetuar o processo de instalação
 
 Para instalar uma versão específica, basta substituir pelo comando:
 
-```
+```bash
 $ composer require plexi/old-extended:1.1.3
 ```
 ## Visualizando as funcionalidades
