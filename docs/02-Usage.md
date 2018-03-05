@@ -2,11 +2,11 @@
 
 ## Sobre o Old Input
 
-Na [documentação oficial do Laravel](https://laravel.com/docs/5.6/requests#old-input), encontra-se o método ***old***, disponível no objeto Request, responsável pelas informações da requisição. Para facilitar o uso deste método, existe um helper global com o mesmo nome ***old()***, ideal para ser chamado dentro de templates blade.
+Na [documentação oficial do Laravel](https://laravel.com/docs/5.6/requests#old-input), encontra-se o método ***old***, disponível no objeto Request, responsável pelas informações da requisição. Para facilitar o uso deste método, existe um helper global com o mesmo nome ***old***, ideal para ser chamado dentro de templates blade.
 
 Explicando resumidamente, o ***old*** devolve o valor de um campo após a última submissão do formulário.
 
-Imagine que em um formulário alguém digite qualquer coisa em um input cujo nome seja ***'email'***. Após digitar e submeter o formulário, se o e-mail for classificado como inválido, o proceso de validação ira redirecionar o usuário de volta para o formulário e também disponibilizará os dados digitados para que o usuário não precise digitar tudo de novo.
+Imagine que em um formulário alguém digite qualquer coisa em um input cujo nome seja ***email***. Após digitar e submeter o formulário, se o e-mail for classificado como inválido, o proceso de validação ira redirecionar o usuário de volta para o formulário e também disponibilizará os dados digitados para que o usuário não precise digitar tudo de novo.
 
 Estes dados já digitados são acessados através do old, bastando especificar o nome do campo a ser devolvido:
 
