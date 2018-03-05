@@ -201,18 +201,89 @@ Com o ***old_check***, por ficar mais conciso, basta adicionar diretamente no lo
 
 ## old_date
 
-Helper semelhante ao old() original do Laravel, porém, para ser usado com datas:
-
 ```php
 old_date($key, $stored_value = null, $stored_format = 'Y-m-d', $show_format = 'd/m/Y');
 ```
 
-## old_datetime
+O helper ***old_date*** funciona como o old padrão do Laravel, porém com transformação de datas. 
 
-Helper semelhante ao old() original do Laravel, porém, para ser usado com datas:
+É muito comum, nos campos de formulário, utilizar máscaras para datas no formato brasileiro (10/01/1980), e no momento da gravação, transformá-las para o formato de banco de dados (1980-01-10). O ***old_date*** faz estre trabalho automaticamente. Para usar é preciso dois passos:
+
+### Passo 1: 
+
+O primeiro passo é declarar o old_date normalmente no blade:
+
+```html
+<div>
+
+    <label>Data de Nascimento</label>
+    
+    <input type="text" name="birth" value="{{ old_date('birth', $model->birth) }}">
+
+</div>
+```
+
+O código acima recebe o formato ***10/01/1980*** do formulário e transforma para ***1980-01-10*** no momento da gravação.
+
+É possível também especificar o formato de gravação e o formato do formulário, bastando acrescentar parâmetros adicionais ao helper:
+
+```html
+<div>
+
+    <label>Data de Nascimento</label>
+    
+    <input type="text" name="birth" value="{{ old_date('birth', $model->birth, 'Y-m-d', 'd/m/Y') }}">
+
+</div>
+```
+
+### Passo 2: 
+
+O segundo passo é personalizar a requisição recebida pelo formulário no controlador. Isso é necessário para que o old_date possa transformar as datas configuradas no blade sem fazer rotinas adicionais.
+
+Basta trocar a invocação normal nos métodos de gravação de ***\Illuminate\Http\Request*** para ***\OldExtended\Http\Requests\ExtendedRequest***:
+
+```html
+use OldExtended\Http\Requests\ExtendedRequest;
+
+class ExampleController extends Controller
+{
+    public function store(ExtendedRequest $form)
+    {
+        // ...
+    }
+    
+    public function update(ExtendedRequest $form)
+    {
+        // ...
+    }
+
+    public function delete(ExtendedRequest $form)
+    {
+        // ...
+    }
+}
+```
+O objeto ExtendedRequest detecta automaticamente os campos corretos e os transforma no momento da requisição com base nos parâmetros de transformação passados no formulário com o helper ***old_date***.
+
+## old_datetime
 
 ```php
 old_datetime($key, $stored_value = null, $stored_format = 'Y-m-d H:i:s', $show_format = 'd/m/Y H:i:s');
+```
+
+O old_datetime faz a mesmíssica coisa que o old_date. A única diferença se encontra nos formatos padrões, que já aceitam as horas, minutos e segundos.
+
+Em outras palavras:
+
+```html
+<input type="text" name="birth" value="{{ old_datetime('birth', $model->birth) }}">
+```
+
+é o mesmo que:
+
+```html
+<input type="text" name="birth" value="{{ old_date('birth', $model->birth, 'Y-m-d H:i:s', 'd/m/Y H:i:s') }}">
 ```
 
 ## date_transform
