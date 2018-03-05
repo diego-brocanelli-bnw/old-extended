@@ -33,9 +33,9 @@ O objetivo é facilitar a programação de templates para formulários de forma 
 
 Entre os helpers disponíveis estão:
 
-* **old_option**: Adiciona o atributo selected em campos select;
-* **old_radio**: Adiciona o atributo checked em campos input do tipo radio;
-* **old_check**: Adiciona o atributo checked em campos input do tipo checkbox;
+* **old_option**: Adiciona o atributo *selected* em campos select;
+* **old_radio**: Adiciona o atributo *checked* em campos input do tipo radio;
+* **old_check**: Adiciona o atributo *checked* em campos input do tipo checkbox;
 * **old_date**: Trata o valor de datas, gerenciando os formatos de entrada e saída;
 * **old_datetime**: um alias para old_date;
 * **date_transform**: Transforma uma data de um formato para outro.

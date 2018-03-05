@@ -2,7 +2,7 @@
 
 ## Acessando o Old Input
 
-O pacote Old Extended foi desenvolvido para extender propósito do helper **Old**, adicionando mais funcionalidades e tornando a programação do formulário mais limpa e fácil de entender.
+O pacote Old Extended foi desenvolvido para extender o propósito do helper **Old**, adicionando mais funcionalidades e tornando a programação do formulário mais limpa e fácil de entender.
 
 > **Nota:** Para explicar as funcionalidades, consideraremos a implementação de um formulário para edição, contendo uma variável chamada ***$model***, que contém todos os campos provenientes do banco de dados.
 
