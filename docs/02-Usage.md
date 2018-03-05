@@ -1,35 +1,191 @@
 # 2. Como Usar
 
-## Sobre o Old Input
+## Acessando o Old Input
 
-Na [documentação oficial do Laravel](https://laravel.com/docs/5.6/requests#old-input), encontra-se o método ***old***, disponível no objeto Request, responsável pelas informações da requisição. Para facilitar o uso deste método, existe um helper global com o mesmo nome ***old***, ideal para ser chamado dentro de templates blade.
-
-Explicando resumidamente, o ***old*** devolve o valor de um campo após a última submissão do formulário.
-
-Imagine que em um formulário alguém digite qualquer coisa em um input cujo nome seja ***email***. Após digitar e submeter o formulário, se o e-mail for classificado como inválido, o proceso de validação ira redirecionar o usuário de volta para o formulário e também disponibilizará os dados digitados para que o usuário não precise digitar tudo de novo.
-
-Estes dados já digitados são acessados através do old, bastando especificar o nome do campo a ser devolvido:
-
-```html
-<input type="text" name="email" value="{{ old('email') }}">
-```
-
-O atributo ***value*** vai receber o texto que o usuário tinha digitado antes da submissão do formulário, ou um valor vazio (null), se o usuário não digitou nada.
-
-É possível especificar um segundo parâmetro com o valor padrão, caso o usuário não digitar nada:
-
-```html
-<input type="text" name="email" value="{{ old('email', 'meuemail@gmail.com') }}">
-```
-
-> **Nota:** Especificar um valor padrão é muito útil para formulários de edição, onde este valor deverá ser proveniente do banco de dados
-
-
-## Old's especiais
-
-O pacote Old Extended foi desenvolvido para o mesmo propósito, adicionando mais funcionalidades e tornando a programação do formulário mais limpa e fácil de entender.
+O pacote Old Extended foi desenvolvido para extender propósito do helper **Old**, adicionando mais funcionalidades e tornando a programação do formulário mais limpa e fácil de entender.
 
 > **Nota:** Para explicar as funcionalidades, consideraremos a implementação de um formulário para edição, contendo uma variável chamada ***$model***, que contém todos os campos provenientes do banco de dados.
+
+Assim como o old, as funcionalidades podem ser implementadas de duas formas:
+
+* através dos helpers (geralmente dentro de templates blade);
+* através do objeto da requisição ( $request->old() )
+
+> **Dica**: veja na [documentação oficial](https://laravel.com/docs/5.6/requests#old-input) os exemplos de como usar o old do objeto \Illuminate\Http\Request.
+
+Numa situação normal, os helpers serão usados diretamente nos templates blade:
+
+```html
+<form action="/users/update" method="post">
+
+    <div>
+
+        <label>Nome</label>
+    
+        <input type="text" name="name" value="{{ old('name', $model->name) }}">
+
+    </div>
+
+    <div>
+
+        <label>Data de Nascimento</label>
+    
+        <input type="text" name="birth" value="{{ old_date('birth', $model->birth) }}">
+
+    </div>
+
+    <div>
+
+        <label>Receber Notificações</label>
+    
+        <br>
+
+        <input type="checkbox" name="notify" value="yes" {{ old_check('notify', 'yes', $model->notify) }}>
+
+    </div>
+</form>
+```
+
+Todavia, poderão existir casos mais específicos onde as funcionalidades precisarão ser invocadas de dentro do controlador. Por isso é importante entender o proceso de requisição. Isso veremos a seguir!
+
+## O Objeto Request
+
+O objeto padrão para requisições é o ***\Illuminate\Http\Request***. Na seção [Accessing The Request](https://laravel.com/docs/5.6/requests#accessing-the-request) da documentação oficial existe um exemplo de como acessar a requisição a partir de um método do controlador. Para facilitar o entendimento, observe o exemplo abaixo:
+
+```php
+
+namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
+
+class UserController extends Controller
+{
+    /**
+     * Formulário de Edição
+     *
+     * @param  Request  $request
+     * @param  int      $id
+     * @return Response
+     */
+    public function edit(Request $request, $id)
+    {
+        // Obtém os dados do usuário no banco de dados
+        $model = \App\User::find($id);
+
+        // O usuário já digitou o nome?
+        // SIM: o old devolve o valor digitado,
+        // NÃO: o old devolve o valor do banco de dados
+        $name_value = $request->old('name', $model->name);
+        // dá na mesma acessar através do helper:
+        $name_value = old('name', $model->name);
+        
+        return view('form.edit')->with('name', $name_value)        
+    }
+    
+    /**
+     * Salva os dados do formulário
+     *
+     * @param  Request  $request
+     * @param  int      $id
+     * @return Response
+     */
+    public function update(Request $request, $id)
+    {
+        // Se o nome especificado tiver mais de 8 caracteres,
+        // o campo será invalidado e o usuário será redirecionado
+        // automaticamente para o Formulário de Edição. 
+        // Neste processo, os dados já digitados são armazenados 
+        // numa sessão temporária para serem acessados através 
+        // do helper old()
+        $request->validate([
+            'name' => 'required|max:8',
+        ]);
+
+        // Atualiza os dados do usuário
+        $model = \App\User::find($id);
+        $model->fill($request->all());
+        $model->save();
+
+        // Gravado com sucesso, 
+        // redireciona o usuário para a lista de usuários
+        return redirect()->route('users.index');
+    }
+} 
+```
+
+No exemplo acima, os comentários explicam o fluxo que acontece do processo de validação dos dados submetidos pelo formulário de edição. Perceba que o objeto ***Request*** é retornado nos dois métodos (edit e update). O parâmetro $id é adicionado pela rota (Ex: /usuarios/editar/{23}) mas o parâmetro $request é adicionado automaticamente pelo Laravel através de [Injeção Automática](https://laravel.com/docs/5.6/container#automatic-injection) de objetos.
+
+O objeto Request possui o método ***$request->old***, que faz a mesma coisa que o helper ***old***.
+
+Entendido isso, podemos prosseguir.
+
+## Com o objeto ExtendedRequest
+
+O pacote Old Extended oferece uma clase própria para tratamento de Requisições para formulários, trata-se do ***OldExtended\Http\Requests\ExtendedRequest***.
+
+Basicamente, é uma classe que extende Request, implementando os métodos adicionais e tratamentos especiais para as informações de data e hora.
+
+Para usar o objeto ExtendedRequest, basta trocar as incidências ao objeto Request encontradas no exemplo anterior:
+
+```php
+
+namespace App\Http\Controllers;
+
+use OldExtended\Http\Requests\ExtendedRequest;
+
+class UserController extends Controller
+{
+    public function edit(ExtendedRequest $request, $id)
+    {
+        // Agora é possivel acessar os métodos especiais
+        $request->oldOption();
+        $request->oldRadio();
+        $request->oldCheck();
+        $request->oldDate();
+        $request->oldDatetime();
+
+        // ...       
+    }
+    
+    public function update(ExtendedRequest $request, $id)
+    {
+        $request->dateTransform();
+        // ...
+    }
+} 
+```
+
+## Sem o Objeto ExtendedRequest
+
+O uso de ExtendedRequest nem sempre é obrigatório, pois você pode usar a maioria das funcionalidades sem a necessidade dele, bastando usar os helpers disponíveis:
+
+```php
+
+namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
+
+class UserController extends Controller
+{
+    public function edit(Request $request, $id)
+    {
+        // Agora é possivel acessar os métodos especiais
+        $old_option();
+        $old_radio();
+        $old_check();
+        $old_date();
+        $old_datetime();
+
+        // ...       
+    }
+    
+    public function update(Request $request, $id)
+    {
+        $date_transform();
+        // ...
+    }
+} 
+```
 
 ## old_option
 
@@ -198,6 +354,16 @@ Com o ***old_check***, por ficar mais conciso, basta adicionar diretamente no lo
 </div>
 ```
 
+## Escopo de old_date e old_date_time
+
+Usando o ExtendedRequest, os valores dos helpers old_date e old_date_time, especificados no formulário serão tratados automaticamente e não será necessário fazer nada manualmente. 
+
+Caso não se use o ExtendedRequest, optando por usar apenas os helpers, a mesma afirmação não é verdade!! Isso porque estes dois helpers em especial possuem uma rotina que trata os formatos das datas, transportando do formulário para o banco de dados e vice-versa.
+
+Em outras palavras, na configuração padrão, as datas do formulário sempre serão exibidas como '10/01/1980' e gravadas como '1980-01-10'. Esta conversão e feita pelo ExtendedRequest, usando o helper date_tranform nos momentos adequados.
+
+Nos exemplos abaixo, veja como implementar usando ou não usando o ExtendedRequest e decida você mesmo qual implementação efetuar:
+
 
 ## old_date
 
@@ -237,7 +403,7 @@ O código acima recebe o formato ***10/01/1980*** do formulário e transforma pa
 </div>
 ```
 
-### Passo 2: 
+### Passo 2 (usando o ExtendedRequest): 
 
 O segundo passo é personalizar a requisição recebida pelo formulário no controlador. Isso é necessário para que o old_date possa transformar as datas configuradas no blade sem fazer rotinas adicionais.
 
@@ -248,23 +414,53 @@ use OldExtended\Http\Requests\ExtendedRequest;
 
 class ExampleController extends Controller
 {
-    public function store(ExtendedRequest $form)
+    public function update(ExtendedRequest $form, $id)
     {
-        // ...
-    }
-    
-    public function update(ExtendedRequest $form)
-    {
-        // ...
-    }
+        // Campos de data são detectados e convertidos 
+        // automaticamente de 10/01/1980 para 1980-01-10
+        // Não é preciso fazer nada!!
+        echo $form->birth; // exibe: 1980-01-10
 
-    public function delete(ExtendedRequest $form)
-    {
+        $model = \App\User::find($id);
+        $model->fill($form->all());
+        $model->save();
+
         // ...
     }
 }
 ```
 O objeto ExtendedRequest detecta automaticamente os campos corretos e os transforma no momento da requisição com base nos parâmetros de transformação passados no formulário com o helper ***old_date***.
+
+### Passo 2 (sem usar o ExtendedRequest): 
+
+Para fazer o segundo passo sem usar o ExtendedRequest, será necessário tratar as datas manualmente antes de gravar no banco de dados:
+
+```php
+use Illuminate\Http\Request;
+
+class ExampleController extends Controller
+{
+    public function update(Request $form, $id)
+    {
+        // Campos de data são recebidos do jeito 
+        // que estão no formulário, pois não são tratados!
+        echo $form->birth; // exibe: 10/01/1980
+
+        // Converte a data de '10/01/1980' para '1980-01-10'
+        $new_date = date_transform($form->birth, 'd/m/Y', 'Y-m-d');
+
+        // Atualiza a data na requisição
+        $form->request->set('birth', $new_date);
+
+        // Agora é possível salvar normalmente
+        $model = \App\User::find($id);
+        $model->fill($form->all());
+        $model->save();
+
+        // ...
+    }
+}
+```
 
 ## old_datetime
 
@@ -272,7 +468,7 @@ O objeto ExtendedRequest detecta automaticamente os campos corretos e os transfo
 old_datetime($key, $stored_value = null, $stored_format = 'Y-m-d H:i:s', $show_format = 'd/m/Y H:i:s');
 ```
 
-O old_datetime faz a mesmíssica coisa que o old_date. A única diferença se encontra nos formatos padrões, que já aceitam as horas, minutos e segundos.
+O old_datetime faz a mesmíssica coisa que o old_date, pois é um alias. A única diferença se encontra nos formatos padrões, que já são predefinidos com as horas, minutos e segundos.
 
 Em outras palavras:
 
