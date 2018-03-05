@@ -121,7 +121,7 @@ Entendido isso, podemos prosseguir.
 
 ## Com o objeto ExtendedRequest
 
-O pacote Old Extended oferece uma clase própria para tratamento de Requisições para formulários, trata-se do ***OldExtended\Http\Requests\ExtendedRequest***.
+O pacote Old Extended oferece uma classe própria para tratamento de Requisições para formulários, trata-se do ***OldExtended\Http\Requests\ExtendedRequest***.
 
 Basicamente, é uma classe que extende Request, implementando os métodos adicionais e tratamentos especiais para as informações de data e hora.
 
@@ -169,23 +169,24 @@ class UserController extends Controller
 {
     public function edit(Request $request, $id)
     {
-        // Agora é possivel acessar os métodos especiais
-        $old_option();
-        $old_radio();
-        $old_check();
-        $old_date();
-        $old_datetime();
+        // Os métodos especiais estão disponíveis na forma de helpers
+        old_option();
+        old_radio();
+        old_check();
+        old_date();
+        old_datetime();
 
         // ...       
     }
     
     public function update(Request $request, $id)
     {
-        $date_transform();
+        date_transform();
         // ...
     }
 } 
 ```
+Agora que sabemos o processo, é preciso conhecer os helpers disponíveis:
 
 ## old_option
 
@@ -360,9 +361,9 @@ Usando o ExtendedRequest, os valores dos helpers old_date e old_date_time, espec
 
 Caso não se use o ExtendedRequest, optando por usar apenas os helpers, a mesma afirmação não é verdade!! Isso porque estes dois helpers em especial possuem uma rotina que trata os formatos das datas, transportando do formulário para o banco de dados e vice-versa.
 
-Em outras palavras, na configuração padrão, as datas do formulário sempre serão exibidas como '10/01/1980' e gravadas como '1980-01-10'. Esta conversão e feita pelo ExtendedRequest, usando o helper date_tranform nos momentos adequados.
+Em outras palavras, na configuração padrão, as datas do formulário sempre serão exibidas como '10/01/1980' e gravadas como '1980-01-10'. Esta conversão é feita pelo ExtendedRequest, usando o helper ***date_tranform*** nos momentos adequados.
 
-Nos exemplos abaixo, veja como implementar usando ou não usando o ExtendedRequest e decida você mesmo qual implementação efetuar:
+Nos exemplos abaixo, veja como implementar ***usando*** ou ***não usando*** o ExtendedRequest e decida você mesmo qual implementação efetuar:
 
 
 ## old_date
@@ -377,7 +378,7 @@ O helper ***old_date*** funciona como o old padrão do Laravel, porém com trans
 
 ### Passo 1: 
 
-O primeiro passo é declarar o old_date normalmente no blade:
+O primeiro passo é declarar o ***old_date*** normalmente no blade:
 
 ```html
 <div>
@@ -389,9 +390,9 @@ O primeiro passo é declarar o old_date normalmente no blade:
 </div>
 ```
 
-O código acima recebe o formato ***10/01/1980*** do formulário e transforma para ***1980-01-10*** no momento da gravação.
+O código acima exibe a data no formato ***10/01/1980*** e transforma para ***1980-01-10*** no momento da gravação.
 
-É possível também especificar o formato de gravação e o formato do formulário, bastando acrescentar parâmetros adicionais ao helper:
+É possível também personalizar o formato de gravação e o formato de exibição no formulário, bastando acrescentar parâmetros adicionais ao helper:
 
 ```html
 <div>
@@ -405,7 +406,7 @@ O código acima recebe o formato ***10/01/1980*** do formulário e transforma pa
 
 ### Passo 2 (usando o ExtendedRequest): 
 
-O segundo passo é personalizar a requisição recebida pelo formulário no controlador. Isso é necessário para que o old_date possa transformar as datas configuradas no blade sem fazer rotinas adicionais.
+O segundo passo é personalizar a requisição recebida pelo formulário no controlador. Isso é necessário para que o ***old_date*** possa transformar as datas configuradas no blade sem fazer rotinas adicionais.
 
 Basta trocar a invocação normal nos métodos de gravação de ***\Illuminate\Http\Request*** para ***\OldExtended\Http\Requests\ExtendedRequest***:
 
@@ -429,7 +430,7 @@ class ExampleController extends Controller
     }
 }
 ```
-O objeto ExtendedRequest detecta automaticamente os campos corretos e os transforma no momento da requisição com base nos parâmetros de transformação passados no formulário com o helper ***old_date***.
+O objeto ExtendedRequest detecta automaticamente os campos corretos e transforma-os no momento da requisição com base nos parâmetros de transformação passados no formulário com o helper ***old_date***.
 
 ### Passo 2 (sem usar o ExtendedRequest): 
 
@@ -468,7 +469,7 @@ class ExampleController extends Controller
 old_datetime($key, $stored_value = null, $stored_format = 'Y-m-d H:i:s', $show_format = 'd/m/Y H:i:s');
 ```
 
-O old_datetime faz a mesmíssica coisa que o old_date, pois é um alias. A única diferença se encontra nos formatos padrões, que já são predefinidos com as horas, minutos e segundos.
+O ***old_datetime*** faz a mesmíssima coisa que o ***old_date***, pois é um *alias*. A única diferença se encontra nos formatos padrões, que já são predefinidos com as horas, minutos e segundos.
 
 Em outras palavras:
 
@@ -495,7 +496,6 @@ date_transform($date_value, $format_origin = 'd/m/Y H:i:s', $format_destiny = 'Y
 1. [Sobre](00-Home.md)
 2. [Instalação](01-Installation.md)
 3. [Como Usar](02-Usage.md)
-4. [Exemplos](03-Examples.md)
-5. [Extras](04-Extras.md)
+4. [Extras](03-Extras.md)
 
 ...
