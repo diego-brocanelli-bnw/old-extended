@@ -10,7 +10,7 @@ Imagine que em um formulário alguém digite qualquer coisa em um input cujo nom
 
 Estes dados já digitados são acessados através do old, bastando especificar o nome do campo a ser devolvido:
 
-```text
+```html
 <input type="text" name="email" value="{{ old('email') }}">
 ```
 
@@ -18,7 +18,7 @@ O atributo ***value*** vai receber o texto que o usuário tinha digitado antes d
 
 É possível especificar um segundo parâmetro com o valor padrão, caso o usuário não digitar nada:
 
-```text
+```html
 <input type="text" name="email" value="{{ old('email', 'meuemail@gmail.com') }}">
 ```
 
@@ -41,7 +41,7 @@ Campos do tipo select possuem opções, que ao serem escolhidas pelo usuário, s
 
 Usando o ***old padrão*** do Laravel, ficaria assim:
 
-```text
+```html
 <div>
 
     <label>Categoria</label>
@@ -73,7 +73,7 @@ Usando o ***old padrão*** do Laravel, ficaria assim:
 
 Com o ***old_option***, por ficar mais conciso, basta adicionar diretamente no local onde o selected deverá aparecer:
 
-```text
+```html
 <div>
 
     <label>Categoria</label>
@@ -103,7 +103,7 @@ Campos input do tipo radio são opções, que ao serem clicadas pelo usuário, s
 
 Usando o ***old padrão*** do Laravel, ficaria assim:
 
-```text
+```html
 <div>
 
     <label>Status</label>
@@ -137,7 +137,7 @@ Usando o ***old padrão*** do Laravel, ficaria assim:
 
 Com o ***old_radio***, por ficar mais conciso, basta adicionar diretamente no local onde o checked deverá aparecer:
 
-```text
+```html
 <div>
 
     <label>Status</label>
@@ -164,7 +164,7 @@ Campos input do tipo checkbox são opções, que ao serem clicadas pelo usuário
 
 Usando o ***old padrão*** do Laravel, ficaria assim:
 
-```text
+```html
 <div>
 
     <label>Receber Notificações</label>
@@ -186,7 +186,7 @@ Usando o ***old padrão*** do Laravel, ficaria assim:
 
 Com o ***old_check***, por ficar mais conciso, basta adicionar diretamente no local onde o checked deverá aparecer:
 
-```text
+```html
 <div>
 
     <label>Receber Notificações</label>
@@ -213,7 +213,7 @@ O helper ***old_date*** funciona como o old padrão do Laravel, porém com trans
 
 O primeiro passo é declarar o old_date normalmente no blade:
 
-```text
+```html
 <div>
 
     <label>Data de Nascimento</label>
@@ -227,7 +227,7 @@ O código acima recebe o formato ***10/01/1980*** do formulário e transforma pa
 
 É possível também especificar o formato de gravação e o formato do formulário, bastando acrescentar parâmetros adicionais ao helper:
 
-```text
+```html
 <div>
 
     <label>Data de Nascimento</label>
@@ -276,13 +276,13 @@ O old_datetime faz a mesmíssica coisa que o old_date. A única diferença se en
 
 Em outras palavras:
 
-```text
+```html
 <input type="text" name="birth" value="{{ old_datetime('birth', $model->birth) }}">
 ```
 
 é o mesmo que:
 
-```text
+```html
 <input type="text" name="birth" value="{{ old_date('birth', $model->birth, 'Y-m-d H:i:s', 'd/m/Y H:i:s') }}">
 ```
 
