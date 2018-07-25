@@ -7,6 +7,8 @@
 
 *By [Ricardo Pereira Dias &copy;](https://github.com/rpdesignerfly)*
 
+> Este pacote esta em fase de desenvolvimento. Use esta biblioteca por sua conta e risco!
+
 Laravel Old Extended é um pacote que provê helpers adicionais para o desenvolvimento de formulários com Laravel e Blade templates.
 
 Sinta-se à vontade para conferir os [releases](https://github.com/rpdesignerfly/old-extended/releases), a [licença](license.md) e a [documentação](docs/01-About.md).
