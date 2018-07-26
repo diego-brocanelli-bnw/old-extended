@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 namespace OldExtended;
 
@@ -8,18 +8,18 @@ namespace OldExtended;
 class Accessor
 {
     const ORIGIN_FORM     = 'form';
-    
+
     const ORIGIN_STORE    = 'store';
-    
+
     const ORIGIN_DEFAULT  = 'default';
-    
+
     private $debug_origin = null;
-    
+
     private $initialized  = false;
 
     /**
      * Carrega e inclui os helpers do pacote
-     * 
+     *
      * @return void
      */
     public function loadHelpers()
@@ -40,9 +40,9 @@ class Accessor
     private function initialize()
     {
         if ($this->initialized == false) {
-            header('Cache-Control: max-age=0, no-cache, no-store, must-revalidate');
-            header('Pragma: no-cache');
-            header('Expires: Fri, 20 Mar 2014 00:00:00 GMT');
+            // header('Cache-Control: max-age=0, no-cache, no-store, must-revalidate');
+            // header('Pragma: no-cache');
+            // header('Expires: Fri, 20 Mar 2014 00:00:00 GMT');
         }
 
         $this->initialized = true;
@@ -53,7 +53,7 @@ class Accessor
      * porém, para ser usado em inputs do tipo checkbox
      *
      * @see https://github.com/rpdesignerfly/laravel-old-extended/blob/master/docs/02-Usage.md
-     * 
+     *
      * @param string $key          O nome do campo de formulário
      * @param mixed  $input_value  O valor do input checkbox
      * @param mixed  $stored_value O valor armazenado em banco de dados
@@ -87,7 +87,7 @@ class Accessor
      * porém, para ser usado em inputs do tipo radio
      *
      * @see https://github.com/rpdesignerfly/laravel-old-extended/blob/master/docs/02-Usage.md
-     * 
+     *
      * @param string $key          O nome do campo de formulário
      * @param mixed  $input_value  O valor do input radio
      * @param mixed  $stored_value O valor armazenado em banco de dados
@@ -121,7 +121,7 @@ class Accessor
      * porém, para ser usado em options de inputs do tipo select
      *
      * @see https://github.com/rpdesignerfly/laravel-old-extended/blob/master/docs/02-Usage.md
-     * 
+     *
      * @param string $key          O nome do campo de formulário
      * @param mixed  $option_value O valor da tag option
      * @param mixed  $stored_value O valor armazenado em banco de dados
@@ -191,7 +191,7 @@ class Accessor
             $this->setOrigin(self::ORIGIN_STORE, $stored_value);
             $value = $stored_value;
         }
-        
+
         $date = $this->dateTransform($value, $stored_format, $show_format);
         if (empty($date)) {
             return '';
