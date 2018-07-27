@@ -1,4 +1,11 @@
 <?php
+/**
+ * @see       https://github.com/rpdesignerfly/old-extended
+ * @copyright Copyright (c) 2018 Ricardo Pereira Dias (https://rpdesignerfly.github.io)
+ * @license   https://github.com/rpdesignerfly/old-extended/blob/master/license.md
+ */
+
+declare(strict_types=1);
 
 namespace OldExtended\Http\Requests;
 
@@ -65,7 +72,7 @@ class ExtendedRequest extends FormRequest
      * porém, para ser usado em inputs do tipo checkbox
      *
      * @see https://github.com/rpdesignerfly/laravel-old-extended/blob/master/docs/02-Usage.md
-     * 
+     *
      * @param string $key          O nome do campo de formulário
      * @param mixed  $input_value  O valor do input checkbox
      * @param mixed  $stored_value O valor armazenado em banco de dados
@@ -80,7 +87,7 @@ class ExtendedRequest extends FormRequest
      * porém, para ser usado em inputs do tipo radio
      *
      * @see https://github.com/rpdesignerfly/laravel-old-extended/blob/master/docs/02-Usage.md
-     * 
+     *
      * @param string $key          O nome do campo de formulário
      * @param mixed  $input_value  O valor do input radio
      * @param mixed  $stored_value O valor armazenado em banco de dados
@@ -122,7 +129,7 @@ class ExtendedRequest extends FormRequest
      * porém, para ser usado com datas
      *
      * @see https://github.com/rpdesignerfly/laravel-old-extended/blob/master/docs/02-Usage.md
-     * 
+     *
      * @param string $key           O nome do campo de formulário
      * @param mixed  $stored_value  O valor armazenado em banco de dados
      * @param string $stored_format O formato recebida Ex: d/m/Y H:i:s
