@@ -1,5 +1,5 @@
 {
-    "name": "plexi/old-extended",
+    "name": "bueno-networks/old-extended",
     "description": "Helpers adicionais para desenvolvimento de formulários mais objetivos com Laravel e Blade templates",
     "keywords": ["laravel","cruds","form","blade","helpers"],
     "license": "MIT",
